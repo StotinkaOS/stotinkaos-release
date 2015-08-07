@@ -1,18 +1,18 @@
 %define debug_package %{nil}
 %define product_family StotinkaOS
-%define release_name Final
+%define release_name Ahinora
 %define base_release_version 6
-%define full_release_version 6.6
+%define full_release_version 6.7
 
 Name:           stotinkaos-release
 Version:        %{base_release_version}
-Release:        6%{?dist}.12.2
+Release:        7%{?dist}.12.3
 Summary:        %{product_family} release file
 Group:          System Environment/Base
 License:        GPLv2
 Obsoletes:      rawhide-release redhat-release-as redhat-release-es redhat-release-ws redhat-release-de comps rpmdb-redhat fedora-release redhat-release centos-release oraclelinux-release sl-release
 Provides:	redhat-release centos-release
-Source0:        centos-release-6-6.tar.gz
+Source0:        centos-release-6-7.tar.gz
 
 %description
 %{product_family} release files
@@ -52,7 +52,6 @@ done
 #create infra variable for yum
 mkdir -p $RPM_BUILD_ROOT/etc/yum/vars/
 install -m 644 infra $RPM_BUILD_ROOT/etc/yum/vars/
-
 
 # copy GPG keys
 mkdir -p -m 755 $RPM_BUILD_ROOT/etc/pki/rpm-gpg
@@ -97,8 +96,39 @@ rm -rf $RPM_BUILD_ROOT
 %_defaultdocdir/centos-release
 
 %changelog
-* Sat Jan 31 2015 Ivaylo Kuzev <ivkuzev@gmail.com>
-- Adapt to Centos/StotinkaOS 6.6
+* Fri Aug 07 2015 Ivaylo Kuzev <ivo@stotinkaos.net>- 6.7.el6.centos.12.3
+- Update to 6.7
+
+* Sat Jan 31 2015 Ivaylo Kuzev <ivkuzev@gmail.com> - 6.6.el6.centos.12.2
+- Adapt to StotinkaOS 6.6
+
+* Thu Oct 23 2014 Johnny Hughes <jhonny@centos.org> - 6.6.el6.centos.12.2
+- change infra var to config(noreplace)
+
+* Thu Oct 23 2014 Johnny Hughes <jhonny@centos.org> - 6.6.el6.centos.12.1
+- Add in infra vars variable to /etc/yum
+- make repo files config(noreplace)
+
+* Sun Oct 19 2014 Johnny Hughes <johnny@centos.org> - 6.6.el6.centos.12
+- Build for CentOS-6.6
+- Add in Vault info for 6.5
+- Add in CentOS-fastrack.repo
+- change CentOS-Debuginfo so it works with debug-install
+
+* Sat Nov 30 2013 Karanbir Singh <kbsingh@centos.org> - 6.5.el6.centos.11.2
+- Add CentOS-6.4 repo defs to CentOS-Vault.repo
+
+* Tue Nov 26 2013 Karanbir Singh <kbsingh@centos.org> - 6.5.el6.centos.11.1
+- Build for CentOS-6.5
+
+* Mon Feb 25 2013 Karanbir Singh <kbsingh@centos.org> - 6.4.el6.centos.10
+- Build for CentOS-6.4
+
+* Mon Jun 25 2012 Karanbir Singh <kbsingh@centos.org> - 6-3.el6.centos.9
+- Bump version to 6.3 as well
+
+* Fri Jun 22 2012 Karanbir Singh <kbsingh@centos.org> - 6-3.el6.centos.8
+- Build for CentOS 6.3
 
 * Thu Dec  8 2011 Karanbir Singh <kbsingh@centos.org> - 6-2.el6.centos.org.7
 - Build for CentOS-6.2

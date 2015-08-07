@@ -5,3 +5,28 @@ gpgcheck=1
 skip_if_unavailable=1
 enabled=1
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-StotinkaOS-6
+
+[StotinkaOS-Source]
+name=StotinkaOS-$releasever - Source files
+baseurl=http://stotinkaos.net/stotinkaOS/repo/6/Source/SRPMS
+gpgcheck=1
+skip_if_unavailable=1
+enabled=0
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-StotinkaOS-6
+
+[StotinkaOS-Testing]
+name=StotinkaOS-$releasever - Testing files
+baseurl=http://stotinkaos.net/stotinkaOS/repo/6/Testing/$basearch/
+gpgcheck=1
+skip_if_unavailable=1
+enabled=0
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-StotinkaOS-6
+
+[StotinkaOS-Plus]
+name=StotinkaOS-$releasever - Plus files
+baseurl=http://stotinkaos.net/stotinkaOS/repo/6/Plus/$basearch/
+gpgcheck=1
+skip_if_unavailable=1
+enabled=0
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-StotinkaOS-6
+

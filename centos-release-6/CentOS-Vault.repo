@@ -221,3 +221,40 @@ gpgcheck=1
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-6
 enabled=0
 
+#-----------------
+
+[C6.6-base]
+name=CentOS-6.6 - Base
+baseurl=http://vault.centos.org/6.6/os/$basearch/
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-6
+enabled=0
+
+[C6.6-updates]
+name=CentOS-6.6 - Updates
+baseurl=http://vault.centos.org/6.6/updates/$basearch/
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-6
+enabled=0
+
+[C6.6-extras]
+name=CentOS-6.6 - Extras
+baseurl=http://vault.centos.org/6.6/extras/$basearch/
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-6
+enabled=0
+
+[C6.6-contrib]
+name=CentOS-6.6 - Contrib
+baseurl=http://vault.centos.org/6.6/contrib/$basearch/
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-6
+enabled=0
+
+[C6.6-centosplus]
+name=CentOS-6.6 - CentOSPlus
+baseurl=http://vault.centos.org/6.6/centosplus/$basearch/
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-6
+enabled=0
+
