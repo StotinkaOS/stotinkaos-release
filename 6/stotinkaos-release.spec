@@ -2,17 +2,17 @@
 %define product_family StotinkaOS
 %define release_name Ahinora
 %define base_release_version 6
-%define full_release_version 6.7
+%define full_release_version 6.8
 
 Name:           stotinkaos-release
 Version:        %{base_release_version}
-Release:        7%{?dist}.12.3
+Release:        8%{?dist}.12.3
 Summary:        %{product_family} release file
 Group:          System Environment/Base
 License:        GPLv2
 Obsoletes:      rawhide-release redhat-release-as redhat-release-es redhat-release-ws redhat-release-de comps rpmdb-redhat fedora-release redhat-release centos-release oraclelinux-release sl-release
 Provides:	redhat-release centos-release
-Source0:        centos-release-6-7.tar.gz
+Source0:        centos-release-6-8.tar.gz
 
 %description
 %{product_family} release files
@@ -96,6 +96,9 @@ rm -rf $RPM_BUILD_ROOT
 %_defaultdocdir/centos-release
 
 %changelog
+* Thu May 26 2016 StotinkaOS team <stotinkaos.bg@gmail.com> 6.8.el6.centos.12.3
+- Update to 6.8
+
 * Fri Aug 07 2015 Ivaylo Kuzev <ivo@stotinkaos.net>- 6.7.el6.centos.12.3
 - Update to 6.7
 
