@@ -6,23 +6,28 @@
 %define base_release_version 7
 %define full_release_version 7
 %define dist_release_version 7
-%define upstream_rel 7.2
-%define centos_rel 2.1511
+%define upstream_rel 7.3
+%define centos_rel 3.1611
 #define beta Beta
 %define dist .el%{dist_release_version}.centos
 
 Name:           stotinkaos-release
 Version:        %{base_release_version}
-Release:        %{centos_rel}%{?dist}.2.10
+Release:        %{centos_rel}%{?dist}
 Summary:        %{product_family} release file
 Group:          System Environment/Base
 License:        GPLv2
-Obsoletes:      centos-release
+Provides:       stotinkaos-release = %{version}-%{release}
 Provides:       centos-release = %{version}-%{release}
 Provides:       centos-release(upstream) = %{upstream_rel}
 Provides:       redhat-release = %{upstream_rel}
 Provides:       system-release = %{upstream_rel}
 Provides:       system-release(releasever) = %{base_release_version}
+Obsoletes:      centos-release < %{full_release_version}
+Obsoletes:      sl-release < %{full_release_version}
+Obsoletes:      sl-release < %{full_release_version}
+Obsoletes:      springdale-release < %{full_release_version}
+Obsoletes:      cloudlinux-release < %{full_release_version}
 Source0:        centos-release-%{base_release_version}-%{centos_rel}.tar.gz
 Source1:        85-display-manager.preset
 Source2:        90-default.preset
@@ -43,10 +48,10 @@ rm -rf %{buildroot}
 mkdir -p %{buildroot}/etc
 
 # create /etc/system-release and /etc/redhat-release
-echo "%{product_family} release %{full_release_version}.%{centos_rel} (%{release_name}) " > %{buildroot}/etc/centos-release
-echo "Derived from Red Hat Enterprise Linux %{upstream_rel} (Source)" > %{buildroot}/etc/centos-release-upstream
-ln -s centos-release %{buildroot}/etc/system-release
-ln -s centos-release %{buildroot}/etc/redhat-release
+echo "%{product_family} release %{full_release_version}.%{centos_rel} (%{release_name}) " > %{buildroot}/etc/stotinkaos-release
+ln -s stotinkaos-release %{buildroot}/etc/centos-release
+ln -s stotinkaos-release %{buildroot}/etc/system-release
+ln -s stotinkaos-release %{buildroot}/etc/redhat-release
 
 # create /etc/os-release
 cat << EOF >>%{buildroot}/etc/os-release
@@ -57,14 +62,9 @@ ID_LIKE="rhel centos fedora"
 VERSION_ID="%{full_release_version}"
 PRETTY_NAME="%{product_family} %{full_release_version} (%{release_name})"
 ANSI_COLOR="0;31"
-CPE_NAME="cpe:/o:stotinkaos:stotinkaos:7"
+CPE_NAME="cpe:/o:centos:centos:7"
 HOME_URL="https://www.stotinkaos.net/"
-BUG_REPORT_URL="https://www.stotinkaos.net/forums/"
-
-CENTOS_MANTISBT_PROJECT="CentOS-7"
-CENTOS_MANTISBT_PROJECT_VERSION="7"
-REDHAT_SUPPORT_PRODUCT="centos"
-REDHAT_SUPPORT_PRODUCT_VERSION="7"
+BUG_REPORT_URL="https://github.com/StotinkaOS/bugs"
 
 EOF
 # write cpe to /etc/system/release-cpe
@@ -96,8 +96,8 @@ install -d -m 755 %{buildroot}/etc/rpm
 cat >> %{buildroot}/etc/rpm/macros.dist << EOF
 # dist macros.
 
+%%sos %{base_release_version}
 %%centos_ver %{base_release_version}
-%%centos %{base_release_version}
 %%rhel %{base_release_version}
 %%dist %dist
 %%el%{base_release_version} 1
@@ -105,11 +105,13 @@ EOF
 
 # use unbranded datadir
 mkdir -p -m 755 %{buildroot}/%{_datadir}/centos-release
+ln -s centos-release %{buildroot}/%{_datadir}/stotinkaos-release
 ln -s centos-release %{buildroot}/%{_datadir}/redhat-release
 install -m 644 EULA %{buildroot}/%{_datadir}/centos-release
 
 # use unbranded docdir
 mkdir -p -m 755 %{buildroot}/%{_docdir}/centos-release
+ln -s centos-release %{buildroot}/%{_docdir}/stotinkaos-release
 ln -s centos-release %{buildroot}/%{_docdir}/redhat-release
 install -m 644 GPL %{buildroot}/%{_docdir}/centos-release
 install -m 644 Contributors %{buildroot}/%{_docdir}/centos-release
@@ -125,10 +127,10 @@ rm -rf %{buildroot}
 
 %files
 %defattr(0644,root,root,0755)
+/etc/stotinkaos-release
 /etc/redhat-release
 /etc/system-release
 /etc/centos-release
-/etc/centos-release-upstream
 %config(noreplace) /etc/os-release
 %config /etc/system-release-cpe
 %config(noreplace) /etc/issue
@@ -138,12 +140,24 @@ rm -rf %{buildroot}
 %config(noreplace) /etc/yum/vars/*
 /etc/rpm/macros.dist
 %{_docdir}/redhat-release
+%{_docdir}/stotinkaos-release
 %{_docdir}/centos-release/*
 %{_datadir}/redhat-release
+%{_datadir}/stotinkaos-release
 %{_datadir}/centos-release/*
 %{_prefix}/lib/systemd/system-preset/*
 
 %changelog
+* Tue Dec 13 2016 StotinkaOS Team <stotinkaos.bg@gmail.com>
+- Update to 7.3 release
+- Remove /etc/centos-release-upstream file
+- Obsolete more release files
+* Sat Jul 16 2016 StotinkaOS Team <stotinkaos.bg@gmail.com>
+- Add new mirror uni-ruse
+
+* Fri Mar 11 2016 StotinkaOS Team <stotinkaos.bg@gmail.com>
+- Add StotinkaOS-Wine repo
+
 * Mon Jan 18 2016 StotinkaOS Team <stotinkaos.bg@gmail.com>
 - Adapt to StotinkaOS 7
 
