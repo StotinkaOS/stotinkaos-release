@@ -6,8 +6,8 @@
 %define base_release_version 7
 %define full_release_version 7
 %define dist_release_version 7
-%define upstream_rel 7.3
-%define centos_rel 3.1611
+%define upstream_rel 7.4
+%define centos_rel 4.1708
 #define beta Beta
 %define dist .el%{dist_release_version}.centos
 
@@ -148,6 +148,9 @@ rm -rf %{buildroot}
 %{_prefix}/lib/systemd/system-preset/*
 
 %changelog
+* Sat Sep 16 2017 StotinkaOS Team <stotinkaos.bg@gmail.com>
+Bump Release for 1708
+
 * Tue Dec 13 2016 StotinkaOS Team <stotinkaos.bg@gmail.com>
 - Update to 7.3 release
 - Remove /etc/centos-release-upstream file
