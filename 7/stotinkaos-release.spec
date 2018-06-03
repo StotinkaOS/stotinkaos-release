@@ -6,22 +6,24 @@
 %define base_release_version 7
 %define full_release_version 7
 %define dist_release_version 7
-%define upstream_rel 7.4
-%define centos_rel 4.1708
+%define upstream_rel_long 7.5-8
+%define upstream_rel 7.5
+%define centos_rel 5.1804
 #define beta Beta
 %define dist .el%{dist_release_version}.centos
 
 Name:           stotinkaos-release
 Version:        %{base_release_version}
-Release:        %{centos_rel}%{?dist}
+Release:        %{centos_rel}%{?dist}.1
 Summary:        %{product_family} release file
 Group:          System Environment/Base
 License:        GPLv2
+Requires:       coreutils, grep
 Provides:       stotinkaos-release = %{version}-%{release}
 Provides:       centos-release = %{version}-%{release}
 Provides:       centos-release(upstream) = %{upstream_rel}
-Provides:       redhat-release = %{upstream_rel}
-Provides:       system-release = %{upstream_rel}
+Provides:       redhat-release = %{upstream_rel_long}
+Provides:       system-release = %{upstream_rel_long}
 Provides:       system-release(releasever) = %{base_release_version}
 Obsoletes:      centos-release < %{full_release_version}
 Obsoletes:      sl-release < %{full_release_version}
@@ -121,7 +123,6 @@ mkdir -p %{buildroot}%{_prefix}/lib/systemd/system-preset/
 install -m 0644 %{SOURCE1} %{buildroot}%{_prefix}/lib/systemd/system-preset/
 install -m 0644 %{SOURCE2} %{buildroot}%{_prefix}/lib/systemd/system-preset/
 
-
 %clean
 rm -rf %{buildroot}
 
@@ -148,8 +149,11 @@ rm -rf %{buildroot}
 %{_prefix}/lib/systemd/system-preset/*
 
 %changelog
+* Sun May 13 2018 StotinkaOS Team <stotinkaos.bg@gmail.com>
+- Bump Release for 1804
+
 * Sat Sep 16 2017 StotinkaOS Team <stotinkaos.bg@gmail.com>
-Bump Release for 1708
+- Bump Release for 1708
 
 * Tue Dec 13 2016 StotinkaOS Team <stotinkaos.bg@gmail.com>
 - Update to 7.3 release
